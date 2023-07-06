@@ -3,6 +3,8 @@ from django.utils import timezone
 
 from blog.models import Category, Post
 
+QUANTITY_POSTS = 5
+
 
 def get_posts(category_slug=None):
     posts = Post.objects.filter(
@@ -17,7 +19,7 @@ def get_posts(category_slug=None):
 
 def index(request):
     template = 'blog/index.html'
-    post_list = get_posts()[:5]
+    post_list = get_posts()[:QUANTITY_POSTS]
     context = {'post_list': post_list}
     return render(request, template, context)
 
